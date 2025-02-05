@@ -1,4 +1,4 @@
-import { userModel } from "../models/ecomModel.js";
+import { userModel } from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../services/tokenGenerate.js";
 

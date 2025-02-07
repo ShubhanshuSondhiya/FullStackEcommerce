@@ -33,7 +33,22 @@ class AdminController {
       res.status(500).json({ msg: "Server error" });
     }
   }
-  static async getDashboard(req, res) {}
+  static async logout(req, res) {
+    res.clearCookie("token", { httpOnly: true, sameSite: "Strict" });
+    res.json({ msg: "Logged out successfully" });
+  }
+
+  static async LoginStatus(req, res) {
+    const token = req.cookies.token;
+    if (!token) return res.json({ loggedIn: false });
+
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      res.json({ loggedIn: true, admin: decoded });
+    } catch {
+      res.json({ loggedIn: false });
+    }
+  }
   static async addProduct(req, res) {}
   static async deleteProduct(req, res) {}
 }

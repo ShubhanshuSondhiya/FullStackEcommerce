@@ -8,12 +8,11 @@ const Register = () => {
     lastName: "",
     email: "",
     password: "",
-    role: "User",
   });
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,7 +23,7 @@ const Register = () => {
     setError("");
     setSuccess("");
 
-    // Validation
+    // To Validate if the form is Filled or Empty
     if (
       !formData.firstName ||
       !formData.lastName ||
@@ -43,7 +42,6 @@ const Register = () => {
           lastname: formData.lastName,
           email: formData.email,
           password: formData.password,
-          role: formData.role,
         }
       );
 
@@ -92,11 +90,6 @@ const Register = () => {
         value={formData.password}
         onChange={handleChange}
       />
-      <br />
-      <select name="role" value={formData.role} onChange={handleChange}>
-        <option value="User">User</option>
-        <option value="Admin">Admin</option>
-      </select>
       <br />
       <button type="submit">Register</button>
     </form>
